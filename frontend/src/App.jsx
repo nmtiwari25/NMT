@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 export default function App() {
   const [messages, setMessages] = useState([
     { from: "bot", text: "Hi! Type 'hi', 'help', 'about', or 'bye' to try me out." },
@@ -17,7 +19,7 @@ export default function App() {
     setSending(true);
 
     try {
-      const res = await fetch("/chat", {
+      const res = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
